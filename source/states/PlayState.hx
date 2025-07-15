@@ -83,13 +83,13 @@ class PlayState extends State
 		hpName.scrollFactor.set();
 		hpName.active = false;
 		hpName.cameras = [camGame];
-		hpBar.emptyCallback = () -> openSubState(new GameOverSubState());
 		add(hpName);
 
 		hpBar = new FlxBar(hpName.x + 35, hpName.y - 5, LEFT_TO_RIGHT, Std.int(Global.maxHp * 1.2), 20, Global, 'hp', 0, Global.maxHp);
 		hpBar.createFilledBar(FlxColor.RED, FlxColor.YELLOW);
 		hpBar.scrollFactor.set();
 		hpBar.cameras = [camGame];
+		hpBar.emptyCallback = () -> openSubState(new GameOverSubState());
 		add(hpBar);
 
 		hpInfo = new FlxText((hpBar.x + 15) + hpBar.width, hpBar.y, 0, Global.hp + ' / ' + Global.maxHp, 22);
@@ -289,7 +289,6 @@ class PlayState extends State
 					heart.x -= Global.speed;
 				if (FlxG.keys.pressed.RIGHT)
 					heart.x += Global.speed;
-				Global.hp -= 1;
 
 				FlxSpriteUtil.bound(heart, box.x, (box.x + box.shapeWidth), box.y, (box.y + box.shapeHeight));
 			}
